@@ -4,19 +4,19 @@ const User = require('../models/User');
 const { auth, isAdmin } = require('../middleware/auth');
 
 // Get all users (admin only)
-router.get('/', auth, isAdmin, async (req, res) => {
+const getallusers = async (req, res) => {
     try {
-        const users = await User.find().select('-password');
+        const users = await User.find().select('-password');// Exclude password from the response
         res.json(users);
     } catch (error) {
         res.status(500).json({ message: 'Server error' });
     }
-});
+};
 
 // Get user by ID (admin only)
-router.get('/:id', auth, isAdmin, async (req, res) => {
+const getuserbyid = async (req, res) => {
     try {
-        const user = await User.findById(req.params.id).select('-password');
+        const user = await User.findById(req.params.id).select('-password');// Exclude password from the response
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
@@ -24,10 +24,10 @@ router.get('/:id', auth, isAdmin, async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: 'Server error' });
     }
-});
+};
 
 // Update user role (admin only)
-router.patch('/:id/role', auth, isAdmin, async (req, res) => {
+const updaterole = async (req, res) => {
     try {
         const { role } = req.body;
         if (!['user', 'admin'].includes(role)) {
@@ -48,10 +48,10 @@ router.patch('/:id/role', auth, isAdmin, async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: 'Server error' });
     }
-});
+};
 
 // Delete user (admin only)
-router.delete('/:id', auth, isAdmin, async (req, res) => {
+const deleteuser = async (req, res) => {
     try {
         const user = await User.findByIdAndDelete(req.params.id);
         if (!user) {
@@ -61,6 +61,9 @@ router.delete('/:id', auth, isAdmin, async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: 'Server error' });
     }
-});
+};
 
-module.exports = router; 
+exports.getallusers = getallusers;
+exports.getuserbyid = getuserbyid;
+exports.updaterole = updaterole;
+exports.deleteuser = deleteuser;
