@@ -13,6 +13,7 @@ const getallusers = async (req, res) => {
     }
 };
 
+
 // Get user by ID (admin only)
 const getuserbyid = async (req, res) => {
     try {
@@ -25,6 +26,8 @@ const getuserbyid = async (req, res) => {
         res.status(500).json({ message: 'Server error' });
     }
 };
+
+
 
 // Update user role (admin only)
 const updaterole = async (req, res) => {
@@ -50,6 +53,8 @@ const updaterole = async (req, res) => {
     }
 };
 
+
+
 // Delete user (admin only)
 const deleteuser = async (req, res) => {
     try {
@@ -62,6 +67,7 @@ const deleteuser = async (req, res) => {
         res.status(500).json({ message: 'Server error' });
     }
 };
+
 
 exports.getallusers = getallusers;
 exports.getuserbyid = getuserbyid;

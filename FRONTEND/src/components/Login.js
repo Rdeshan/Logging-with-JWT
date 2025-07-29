@@ -3,17 +3,25 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const[form,setForm] = useState({
+        email:"",
+        password:""
+    })
     const [error, setError] = useState('');
     const navigate = useNavigate();
     const { login } = useAuth();
+
+
+    const handleForm =(e)=>{
+        const{name,value} = e.target;
+        setForm((prev)=>({...prev,[name]:value}));
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
 
-        const result = await login(email, password);
+        const result = await login(form.email, form.password);
         if (result.success) {
             navigate('/dashboard');
         } else {
@@ -31,8 +39,9 @@ const Login = () => {
                         <label>Email:</label>
                         <input
                             type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            name ="email"
+                            value={form.email}
+                            onChange={handleForm}
                             required
                         />
                     </div>
@@ -40,8 +49,9 @@ const Login = () => {
                         <label>Password:</label>
                         <input
                             type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                            name="password"
+                            value={form.password}
+                            onChange={handleForm}
                             required
                         />
                     </div>

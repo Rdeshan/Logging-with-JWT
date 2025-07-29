@@ -9,5 +9,4 @@ userrouter.patch('/:id/role', auth, isAdmin, controllers.updaterole);
 userrouter.delete('/:id', auth, isAdmin, controllers.deleteuser);
 
 
-
 module.exports = userrouter;

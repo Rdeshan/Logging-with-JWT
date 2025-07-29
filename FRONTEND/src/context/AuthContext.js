@@ -36,6 +36,8 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
+
+//ok
     const login = async (email, password) => {
         try {
             const response = await axios.post('http://localhost:5000/api/auth/login', {
@@ -55,6 +57,7 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
+    //ok
     const register = async (username, email, password) => {
         try {
             const response = await axios.post('http://localhost:5000/api/auth/register', {
@@ -75,6 +78,7 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
+    // logout mean remove token
     const logout = () => {
         localStorage.removeItem('token');
         setUser(null);

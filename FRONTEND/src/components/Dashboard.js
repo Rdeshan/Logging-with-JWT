@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 const Dashboard = () => {
-    const { user, logout } = useAuth();
+    const { user, logout } = useAuth();//check user is admin or normal user
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -22,7 +22,7 @@ const Dashboard = () => {
             <div className="dashboard-content">
                 <h3>User Dashboard</h3>
                 <p>This is your personal dashboard. You are logged in as a regular user.</p>
-                {user?.role === 'admin' && (
+                {user?.role === 'admin' && (// code start here , looking useAuth if user is admin show this 
                     <button
                         onClick={() => navigate('/admin')}
                         className="admin-button"

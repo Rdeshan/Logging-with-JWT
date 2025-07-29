@@ -3,18 +3,24 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 const Register = () => {
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const[registerForm,setRegisterForm] = useState({
+        username:"",
+        email:"",
+        password:""
+    })
     const [error, setError] = useState('');
     const navigate = useNavigate();
     const { register } = useAuth();
 
+    const handleForm=(e)=>{
+        const{name,value} = e.target;
+        setRegisterForm((prev)=>({...prev,[name]:value}))
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
-
-        const result = await register(username, email, password);
+        const result = await register(registerForm.username, registerForm.email, registerForm.password);
         if (result.success) {
             navigate('/dashboard');
         } else {
@@ -32,8 +38,9 @@ const Register = () => {
                         <label>Username:</label>
                         <input
                             type="text"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
+                            name="username"
+                            value={registerForm.username}
+                            onChange={handleForm}
                             required
                         />
                     </div>
@@ -41,8 +48,9 @@ const Register = () => {
                         <label>Email:</label>
                         <input
                             type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            name="email"
+                            value={registerForm.email}
+                            onChange={handleForm}
                             required
                         />
                     </div>
@@ -50,8 +58,9 @@ const Register = () => {
                         <label>Password:</label>
                         <input
                             type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                            name ="password"
+                            value={registerForm.password}
+                            onChange={handleForm}
                             required
                         />
                     </div>
