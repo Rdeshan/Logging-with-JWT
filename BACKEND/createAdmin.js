@@ -21,7 +21,7 @@ const createAdmin = async () => {
             password: '227282003', // This will be hashed automatically
             role: 'admin'
         });
-
+  
         await adminUser.save();
         console.log('Admin user created successfully');
         console.log(adminUser.email);

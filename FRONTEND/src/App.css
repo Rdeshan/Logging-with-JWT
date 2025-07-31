@@ -1,5 +1,6 @@
 /* General Styles */
-* {
+
+/** {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -11,7 +12,7 @@ body {
     background-color: #f4f4f4;
 }
 
-/* Auth Container Styles */
+/* Auth Container Styles 
 .auth-container {
     display: flex;
     justify-content: center;
@@ -92,14 +93,13 @@ body {
     text-align: center;
 }
 
-/* Dashboard Styles */
+/* Dashboard Styles 
 .dashboard-container,
 .admin-dashboard-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
 }
-
 .dashboard-header {
     display: flex;
     justify-content: space-between;
@@ -146,7 +146,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Admin Dashboard Table Styles */
+/* Admin Dashboard Table Styles 
 .users-list {
     background: white;
     padding: 20px;
@@ -188,4 +188,122 @@ select {
 
 .delete-button:hover {
     background: #c82333;
+}
+*/
+
+/* login page css part */
+.auth-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;   
+  align-items: center;       
+  position: relative;
+  background: #f5f5ff;       
+  overflow: hidden;
+}
+
+
+.auth-box {
+  width: 380px;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 40px;
+  padding: 2.5rem 1.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+
+
+.glass-layer {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  bottom: -68vh;
+  background: rgba(158, 111, 234, 0.912);
+  backdrop-filter: blur(20px);
+  border-radius: 1000px;
+  border-top-left-radius: 1000px;
+  z-index: 1;
+
+  animation: waveMotion 8s ease-in-out infinite;
+}
+
+@keyframes waveMotion {
+  0% {
+    transform: translateY(0px) translateX(0px) scale(1);
+  }
+  25% {
+    transform: translateY(20px) translateX(-10px) scale(1.01);
+  }
+  50% {
+    transform: translateY(10px) translateX(10px) scale(1.02);
+  }
+  75% {
+    transform: translateY(25px) translateX(-5px) scale(1.01);
+  }
+  100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+  }
+}
+
+
+
+.login-button {
+  background-color: #9b56ea;
+  color: #fff;
+  border: none;
+  padding: 0.6rem;
+}
+
+.login-button:hover {
+  background-color: #c29af8;
+  color: #fff;
+}
+
+.bubbles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.bubbles span {
+  position: absolute;
+  display: block;
+  width: 200px;
+  height: 200px;
+  background: rgba(203, 165, 255, 0.3);
+  border-radius: 50%;
+  animation: bubble 20s linear infinite;
+  bottom: -100px;
+}
+
+.bubbles span:nth-child(odd) {
+  background: rgba(162, 118, 255, 0.4);
+}
+
+.bubbles span:nth-child(even) {
+  background: rgba(183, 178, 255, 0.4);
+}
+
+.bubbles span {
+  left: calc(10% * var(--i));
+  animation-delay: calc(-2s * var(--i));
+  animation-duration: calc(12s + var(--i) * 1s);
+}
+
+@keyframes bubble {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-1000px) scale(0.5);
+    opacity: 0;
+  }
 }
